@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} | Profiles {% endblock %}
+{% block content %}
+{% include 'partials/-alerts.html' %}
+<br>
+
+<table border-collapse="collapse" width="90%" align="center">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Date Of Birth</th>
+    <th>Photo</th>
+    <th style=" float: right">Action</th>
+
+  </tr>
+
+  {% if profile %}
+
+    {% for profiles in profile %}
+        <tr>
+        <td>{{ profiles.id }}</td>
+        <td>{{ profiles.name }}</td>
+        <td>{{ profiles.age }}</td>
+        <td>{{ profiles.dob }}</td>
+
+        <td height="50" width="50"><img src="{{ profiles.photo.url }}"></td>
+        <td style=" float: right"><input type="button" value="Delete" class="btn btn-danger"  onclick="location.href='delete/{{ profiles.id }}/'"></td>
+        <td style=" float: right"><input type="button" value="Update" class="btn btn-primary"  onclick="location.href='updateprofile/{{ profiles.id }}'"></td>
+        </tr>
+     {% endfor %}
+  {% endif %}
+</table>
+<br>
+{% endblock %}
+{#style="background:#fb0266; border: none; color: #FFFFFF;"#}
